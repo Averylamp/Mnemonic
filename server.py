@@ -113,4 +113,5 @@ def microsoft_confirm():
 	print request.args.get("name")
 	print request.args.get("image_name")
 	print request.args.get("json_data")
+	return "success!!!!"
 
