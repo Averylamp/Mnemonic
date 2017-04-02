@@ -281,10 +281,10 @@ def addPersonToDatabase(name, info):
 		'Content-Type': 'application/octet-stream',
 		'Ocp-Apim-Subscription-Key': '7c8d348d98b34b189840400a9ae58bcb',
 	}
-	body = {"name":name, "userData":info}
+	body = "{\"name\":" + name+",\"userData\":" + info+ "\"}"
 	print ("Body - {}".format(body))
 	conn = httplib.HTTPSConnection('westus.api.cognitive.microsoft.com')
-	conn.request("POST", "/face/v1.0/persongroups/people/persons", str(body), headers)
+	conn.request("POST", "/face/v1.0/persongroups/people/persons", body, headers)
 	response = conn.getresponse()
 	data = response.read()
 	data_dict = ast.literal_eval(data)
