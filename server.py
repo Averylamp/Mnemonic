@@ -333,7 +333,7 @@ def microsoft_confirm():
 
 	state = "DONE"
 
-app.route('/doneListening', methods=['POST'])
+@app.route('/doneListening', methods=['POST'])
 def finished_listening():
 	state = "EDITING"
 	return state
