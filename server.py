@@ -73,7 +73,7 @@ def upload_image():
 			return redirect(request.url)
 		if file and allowed_file(file.filename):
 			if UPLOAD_COUNT % 3 == 0:
-				print "lol"
+				# print "lol"
 				current_folder = "imageset" + str(UPLOAD_COUNT/3) + "/"
 				state = "LISTENING"
 				if (not os.path.exists(os.path.join(UPLOAD_IMAGE_FOLDER, current_folder))):
@@ -87,6 +87,7 @@ def upload_image():
 					print "match not found"
 				else:
 					#do whatever
+					print "a"
 			return redirect(url_for('upload_image', filename=filename))
 	return '''
 	<!doctype html>
@@ -123,7 +124,7 @@ def microsoft_confirm():
 	print request.args.get("name")
 	print request.args.get("image_name")
 	print request.args.get("json_data")
-	addPersonToDatabase(request.args.get("name"),print request.args.get("json_data"))
+	addPersonToDatabase(request.args.get("name"),request.args.get("json_data"))
 	#write json data to text file in database,
 	#write image to database
 
