@@ -376,7 +376,7 @@ def microsoft_confirm():
 	addPersonToDatabase(request.args.get("name"),request.args.get("json_data"))
 	#write json data to text file in database,
 	#write image to database
-
+	
 	state = "DONE"
 
 @app.route('/doneListening', methods=['POST'])

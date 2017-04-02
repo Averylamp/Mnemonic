@@ -1,0 +1,11 @@
+{
+  "name" : "Arlene Siswanto",
+  "date" : "April 2nd",
+  "location" : "Princeton, NJ",
+  "image_name" : "arlenesiswanto.jpg",
+  "tags" : [
+    "MIT",
+    "COMPUTER SCIENCE",
+    "STUFF"
+  ]
+}
