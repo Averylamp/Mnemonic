@@ -108,4 +108,9 @@ def get_image(img_name):
 	print (USER_IMAGE_FOLDER + img_name)
 	return send_file(USER_IMAGE_FOLDER + img_name, mimetype='image/gif')
 
+@app.route('/microsoft', methods=['POST'])
+def microsoft_confirm():
+	print request.args.get("name")
+	print request.args.get("image_name")
+	print request.args.get("json_data")
 
