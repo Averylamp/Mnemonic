@@ -336,6 +336,7 @@ def microsoft_confirm():
 
 @app.route('/doneListening', methods=['POST'])
 def finished_listening():
+	print "State now Editing"
 	state = "EDITING"
 	return state
 
