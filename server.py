@@ -79,6 +79,12 @@ def upload_image():
 			filename = secure_filename(file.filename)
 			file.save(os.path.join(app.config['UPLOAD_IMAGE_FOLDER'], current_folder, filename))
 			UPLOAD_COUNT += 1
+			if UPLOAD_COUNT % 3 == 0:
+				resp = checkForMatch(UPLOAD_COUNT/3)
+				if resp == false:
+					print "match not found"
+				else:
+					#do whatever
 			return redirect(url_for('upload_image', filename=filename))
 	return '''
 	<!doctype html>
@@ -110,8 +116,9 @@ def get_image(img_name):
 
 @app.route('/microsoft', methods=['POST'])
 def microsoft_confirm():
+	print request.args
 	print request.args.get("name")
 	print request.args.get("image_name")
 	print request.args.get("json_data")
-	return "success!!!!"
+	addPersonToDatabase(request.args.get("name"),print request.args.get("json_data"))
 
