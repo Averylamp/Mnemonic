@@ -215,7 +215,8 @@ def upload_image():
 		if file and allowed_file(file.filename):
 			if UPLOAD_COUNT % 3 == 0:
 				# print "lol"
-				current_folder = "imageset" + str(UPLOAD_COUNT/3) + "/"
+				current_folder = "imageset" + str(0) + "/"
+				# current_folder = "imageset" + str(UPLOAD_COUNT/3) + "/"
 				state = "LISTENING"
 				if (not os.path.exists(os.path.join(UPLOAD_IMAGE_FOLDER, current_folder))):
     					os.makedirs(os.path.join(UPLOAD_IMAGE_FOLDER, current_folder))
@@ -290,7 +291,8 @@ def addPersonToDatabase(name, info):
 	for i in range(3):
 		output_num = '%d' % i
 		filename = "image" + str(output_num) + ".jpg"
-		fullFilePath = microsoft_path + "imageset" + str(set_number) + "/" + filename
+		# fullFilePath = microsoft_path + "imageset" + str(set_number) + "/" + filename
+		fullFilePath = microsoft_path + "imageset" + "/" + filename
 		print(fullFilePath)
 		try:
 			
