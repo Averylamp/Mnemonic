@@ -2,13 +2,16 @@ import os
 from flask import Flask, request, redirect, url_for
 from werkzeug.utils import secure_filename
 
-UPLOAD_IMAGE_FOLDER = '/Users/josh/temp/Mnemonic/uploads/'
+UPLOAD_IMAGE_FOLDER = '/Users/josh/temp/Mnemonic/uploads/images/'
+UPLOAD_AUDIO_FOLDER = '/Users/josh/temp/Mnemonic/uploads/audio/'
 ALLOWED_IMAGE_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 ALLOWED_AUDIO_EXTENSIONS = set(['wav', 'mp3'])
 
 app = Flask(__name__)
 app.config['UPLOAD_IMAGE_FOLDER'] = UPLOAD_IMAGE_FOLDER
+app.config['UPLOAD_AUDIO_FOLDER'] = UPLOAD_AUDIO_FOLDER
 
+state = "default" #valid states are default, listening, done, found
 
 # @app.route('/')
 # def hello_world():
@@ -21,19 +24,17 @@ def allowed_file(filename):
 @app.route('/upload/audio', methods=['GET', 'POST'])
 def upload_audio():
 	if request.method == 'POST':
-		# check if the post request has the file part
 		if 'file' not in request.files:
 			flash('No file part')
 			return redirect(request.url)
 		file = request.files['file']
-		# if user does not select file, browser also
 		# submit a empty part without filename
 		if file.filename == '':
 			flash('No selected file')
 			return redirect(request.url)
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)
-			file.save(os.path.join(app.config['UPLOAD_IMAGE_FOLDER'], filename))
+			file.save(os.path.join(app.config['UPLOAD_AUDIO_FOLDER'], filename))
 			return redirect(url_for('upload_audio', filename=filename))
 	return '''
 	<!doctype html>
@@ -71,4 +72,11 @@ def upload_image():
 		 <input type=submit value=Upload>
 	</form>
 	'''
-	
+
+# @app.route('/status', methods=['GET'])
+# def get_status():
+# 	if state == "default":
+# 	if state == "listening":
+# 	if state == "done":
+# 	if state == "found":
+

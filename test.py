@@ -6,6 +6,8 @@ def read_zipfile(path):
 	with open(path, 'rb') as f:
 		return f.read()
 
+path = "/Users/josh/temp/Mnemonic/imageset2/"
+
 def checkForMatch():
 	faceheaders = {
 	    # Request headers
@@ -38,7 +40,7 @@ def checkForMatch():
 	for i in range(3):
 		output_num = '%d' % i
 		filename = "image" + str(output_num) + ".jpg"
-		path = "/Users/avery/Desktop/"
+		
 		fullFilePath = path + filename
 		print(fullFilePath)
 		try:
@@ -170,7 +172,6 @@ def addPersonToDatabase(name, info):
 	for i in range(3):
 		output_num = '%d' % i
 		filename = "image" + str(output_num) + ".jpg"
-		path = "/Users/avery/Desktop/"
 		fullFilePath = path + filename
 		print(fullFilePath)
 		try:
