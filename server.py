@@ -152,7 +152,7 @@ def keywords(speech_text):
 @app.route('/ibm/<text>', methods=['GET'])
 def get_keywords(text):
 	result = keywords(text)
-	return Str(result)
+	return ",".join(result)
 
 
 
