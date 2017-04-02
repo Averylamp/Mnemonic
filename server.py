@@ -16,7 +16,7 @@ app = Flask(__name__)
 app.config['UPLOAD_IMAGE_FOLDER'] = UPLOAD_IMAGE_FOLDER
 app.config['UPLOAD_AUDIO_FOLDER'] = UPLOAD_AUDIO_FOLDER
 
-state = "default" #valid states are default, listening, done, found
+state = "DEFAULT" #valid states are default, listening, done, found
 
 current_folder = ""
 UPLOAD_COUNT = 0
@@ -58,6 +58,7 @@ def upload_audio():
 def upload_image():
 	global UPLOAD_COUNT
 	global current_folder
+	global state
 	if request.method == 'POST':
 		# check if the post request has the file part
 		if 'file' not in request.files:
@@ -116,9 +117,18 @@ def get_image(img_name):
 
 @app.route('/microsoft', methods=['POST'])
 def microsoft_confirm():
+	global state
 	print request.args
 	print request.args.get("name")
 	print request.args.get("image_name")
 	print request.args.get("json_data")
 	addPersonToDatabase(request.args.get("name"),print request.args.get("json_data"))
+	#write json data to text file in database,
+	#write image to database
 
+	state = "DONE
+
+@app.route('/state', methods=['GET'])
+def get_state():
+	global state
+	return state
