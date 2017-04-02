@@ -334,6 +334,7 @@ def microsoft_confirm():
 app.route('/doneListening', methods=['POST'])
 def finished_listening():
 	state = "EDITING"
+	return state
 
 def keywords(speech_text):
 
