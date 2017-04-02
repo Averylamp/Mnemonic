@@ -145,20 +145,20 @@ def checkForMatch(set_number):
 		except Exception as e:
 		    print("[Error {0}] ".format(e))
 		    print("e")
-		if i == 1:
-			try:
-				conn = httplib.HTTPSConnection('westus.api.cognitive.microsoft.com')
-				conn.request("POST", "/emotion/v1.0/recognize?%s" % emotionparams, inputdata, emotionheaders)
-				response = conn.getresponse()
-				data = response.read()
-				print("emotion data ---------------------")
-				data_dict = ast.literal_eval(data)
-				emotion_dict = copy.deepcopy(data_dict)
-				print(data_dict)
-				print("END emotion data ---------------------\n")
-				conn.close()
-			except Exception as e:
-				print("[Errno {0}] {1}".format(e.errno, e.strerror))
+		# if i == 1:
+		# 	try:
+		# 		conn = httplib.HTTPSConnection('westus.api.cognitive.microsoft.com')
+		# 		conn.request("POST", "/emotion/v1.0/recognize?%s" % emotionparams, inputdata, emotionheaders)
+		# 		response = conn.getresponse()
+		# 		data = response.read()
+		# 		print("emotion data ---------------------")
+		# 		data_dict = ast.literal_eval(data)
+		# 		emotion_dict = copy.deepcopy(data_dict)
+		# 		print(data_dict)
+		# 		print("END emotion data ---------------------\n")
+		# 		conn.close()
+		# 	except Exception as e:
+		# 		print("[Errno {0}] {1}".format(e.errno, e.strerror))
 	print("Face Data ---------------------")
 	print(faceIDS)
 	print("END Face Data ----------------------\n")
@@ -326,10 +326,10 @@ def addPersonToDatabase(name, info):
 	print("end info")
 	body["userData"] = dict_to_string(info)
 	strFormat = """{"name":"%s","userData":"%s"}""" 
-	data = strFormat % (name, info)
+	data = strFormat % (name, dict_to_string(info))
 	print ("Body - {}".format(data))
 	conn = httplib.HTTPSConnection('westus.api.cognitive.microsoft.com')
-	conn.request("POST", "/face/v1.0/persongroups/people/persons", str(body), headers)
+	conn.request("POST", "/face/v1.0/persongroups/people/persons", str(data), headers)
 	response = conn.getresponse()
 	data = response.read()
 	data_dict = ast.literal_eval(data)
