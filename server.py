@@ -2,8 +2,8 @@ import os
 from flask import Flask, request, redirect, url_for, send_file
 from werkzeug.utils import secure_filename
 import microsoftface
-from watson_developer_cloud import SpeechToTextV1, AlchemyLanguageV1
 import ibmtext
+
 
 #these paths should be changed when running on the server
 UPLOAD_IMAGE_FOLDER = '/root/mnemonic/uploads/imagesets/'
