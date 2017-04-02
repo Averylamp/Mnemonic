@@ -200,7 +200,7 @@ def addPersonToDatabase(name, info):
 	print(data)
 	print("Finished Training Data")
 	
-response = checkForMatch()
-if response == False:
-	addPersonToDatabase("Arlene Siswanto" ,"Arlene is a current Freshman at MIT.  She studies computer science.")
+# response = checkForMatch()
+# if response == False:
+# 	addPersonToDatabase("Arlene Siswanto" ,"Arlene is a current Freshman at MIT.  She studies computer science.")
 	
