@@ -226,6 +226,8 @@ def upload_image():
 				if resp == False:
 					print "match not found"
 				else:
+					with open("Output.txt", "w") as text_file:
+						text_file.write(resp)
 					state = "FOUND"
 					return resp
 					#do whatever
@@ -336,6 +338,8 @@ def microsoft_confirm():
 @app.route('/doneListening', methods=['POST'])
 def finished_listening():
 	global state
+	if state == "FOUND":
+		return state
 	print "State now Editing"
 	state = "EDITING"
 	return state
