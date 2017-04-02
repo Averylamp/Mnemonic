@@ -18,7 +18,7 @@ app = Flask(__name__)
 app.config['UPLOAD_IMAGE_FOLDER'] = UPLOAD_IMAGE_FOLDER
 app.config['UPLOAD_AUDIO_FOLDER'] = UPLOAD_AUDIO_FOLDER
 
-state = "DEFAULT" #valid states are default, listening, done, found
+state = "DEFAULT" #valid states are default, listening, done, found, editing
 
 current_folder = ""
 UPLOAD_COUNT = 0
@@ -330,6 +330,10 @@ def microsoft_confirm():
 	#write image to database
 
 	state = "DONE"
+
+app.route('/doneListening', methods=['POST'])
+def finished_listening():
+	state = "EDITING"
 
 def keywords(speech_text):
 
