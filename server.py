@@ -225,9 +225,10 @@ def upload_image():
 			UPLOAD_COUNT += 1
 			if UPLOAD_COUNT % 3 == 0:
 				resp = checkForMatch(UPLOAD_COUNT/3)
-				if resp == false:
+				if resp == False:
 					print "match not found"
 				else:
+					return resp
 					#do whatever
 					print "a"
 			return redirect(url_for('upload_image', filename=filename))
