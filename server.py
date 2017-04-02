@@ -8,6 +8,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 #these paths should be changed when running on the server
 UPLOAD_IMAGE_FOLDER = '/root/mnemonic/uploads/imagesets/'
+RECENT_IMAGE_FOLDER = '/root/mnemonic/uploads/imagesets/imageset0/'
 UPLOAD_AUDIO_FOLDER = '/root/mnemonic/uploads/audio/'
 USER_TEXT_FOLDER = '/root/mnemonic/database/text/'
 USER_IMAGE_FOLDER = '/root/mnemonic/database/images/'
@@ -255,6 +256,11 @@ def get_users():
 		string = string[:-1]
 	string += "]"
 	return string
+
+@app.route('/recent_image/<img_name>', methods=['GET'])
+def get_recent_image(img_name):
+	return send_file(RECENT_IMAGE_FOLDER + img_name, mimetype='image/gif')
+
 
 @app.route('/images/<img_name>', methods=['GET'])
 def get_image(img_name):
