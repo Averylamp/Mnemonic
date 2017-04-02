@@ -45,12 +45,12 @@ def keywords(speech_text):
 	return keywords
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-	# speech_wav = 'averywav.wav' #change
-	# text = speech_to_text(speech_wav)
-	text = "Hello my name is Avery I go to the messages G in the study computer science"
-	print(text)
-	keyword_list = keywords(text)
-	print(keyword_list)
-keywords("Hello my name is Avery I go to the messages G in the study computer science")
+# 	# speech_wav = 'averywav.wav' #change
+# 	# text = speech_to_text(speech_wav)
+# 	text = "Hello my name is Avery I go to the messages G in the study computer science"
+# 	print(text)
+# 	keyword_list = keywords(text)
+# 	print(keyword_list)
+# keywords("Hello my name is Avery I go to the messages G in the study computer science")
