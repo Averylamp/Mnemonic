@@ -1,12 +1,13 @@
 import os
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, send_file
 from werkzeug.utils import secure_filename
-#import microsoftface
-#import ibmtext
+import microsoftface
+# import ibmtext
 
 UPLOAD_IMAGE_FOLDER = '/Users/josh/temp/Mnemonic/uploads/images/'
 UPLOAD_AUDIO_FOLDER = '/Users/josh/temp/Mnemonic/uploads/audio/'
 USER_TEXT_FOLDER = '/Users/josh/temp/Mnemonic/database/text/'
+USER_IMAGE_FOLDER = '/Users/josh/temp/Mnemonic/database/images/'
 ALLOWED_IMAGE_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 ALLOWED_AUDIO_EXTENSIONS = set(['wav', 'mp3'])
 
@@ -65,6 +66,10 @@ def upload_image():
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)
 			file.save(os.path.join(app.config['UPLOAD_IMAGE_FOLDER'], filename))
+
+
+
+
 			return redirect(url_for('upload_image', filename=filename))
 	return '''
 	<!doctype html>
@@ -84,4 +89,9 @@ def get_users():
 		with open(USER_TEXT_FOLDER + f) as file:
 			string += file.read()
 	return string
+
+@app.route('/images/<img_name>', methods=['GET'])
+def get_image(img_name):
+	print (USER_IMAGE_FOLDER + img_name)
+	return send_file(USER_IMAGE_FOLDER + img_name, mimetype='image/gif')
 
