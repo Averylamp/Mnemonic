@@ -2,7 +2,8 @@ import os
 from flask import Flask, request, redirect, url_for, send_file
 from werkzeug.utils import secure_filename
 import microsoftface
-import ibmtext
+from watson_developer_cloud import SpeechToTextV1, AlchemyLanguageV1
+import json
 
 
 #these paths should be changed when running on the server
@@ -130,10 +131,29 @@ def microsoft_confirm():
 
 	state = "DONE"
 
+def keywords(speech_text):
+
+	if speech_text is None:
+		return []
+
+	alchemy_language = AlchemyLanguageV1(api_key='13789e5c96c9a0aecfaa20c4e4dd2731e60e026a')
+	url = 'https://gateway-a.watsonplatform.net/calls'
+
+	json_form = json.dumps(alchemy_language.keywords(max_items=6, text=speech_text))
+	json_data = json.loads(json_form)
+	if len(json_data["keywords"]) == 0:
+		return []
+	json_keywords = json_data["keywords"]
+	keywords = []
+	for i in json_keywords:
+		keywords.append(i['text'])
+	return keywords
+
 @app.route('/ibm/<text>', methods=['GET'])
 def get_keywords(text):
 	result = keywords(text)
 	return Str(result)
+
 
 
 @app.route('/state', methods=['GET'])
