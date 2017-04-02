@@ -295,7 +295,8 @@ def get_users():
 
 @app.route('/recent_image/<img_name>', methods=['GET'])
 def get_recent_image(img_name):
-	return send_file(RECENT_IMAGE_FOLDER + img_name, mimetype='image/gif')
+	
+	return send_file(microsoft_path + "imageset0" + "/" + img_name, mimetype='image/gif')
 
 
 @app.route('/images/<img_name>', methods=['GET'])
