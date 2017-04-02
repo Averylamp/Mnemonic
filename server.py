@@ -294,9 +294,10 @@ def get_users():
 	#string.replace('\"', '"')
 	return jsonify(json.loads(string))
 
+microsoft_path = "/root/mnemonic/uploads/imagesets/"
+
 @app.route('/recent_image/<img_name>', methods=['GET'])
 def get_recent_image(img_name):
-	
 	return send_file(microsoft_path + "imageset0" + "/" + img_name, mimetype='image/gif')
 
 
@@ -309,7 +310,7 @@ def read_zipfile(path):
 	with open(path, 'rb') as f:
 		return f.read()
 
-microsoft_path = "/root/mnemonic/uploads/imagesets/"
+
 
 def addImageInfoToDatabase(image_name, json_data):
 	arg_name = image_name
