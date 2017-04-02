@@ -2,7 +2,8 @@ import os
 from flask import Flask, request, redirect, url_for, send_file
 from werkzeug.utils import secure_filename
 import microsoftface
-# import ibmtext
+from watson_developer_cloud import SpeechToTextV1, AlchemyLanguageV1
+import ibmtext
 
 #these paths should be changed when running on the server
 UPLOAD_IMAGE_FOLDER = '/root/mnemonic/uploads/imagesets/'
@@ -126,7 +127,13 @@ def microsoft_confirm():
 	#write json data to text file in database,
 	#write image to database
 
-	state = "DONE
+	state = "DONE"
+
+@app.route('/ibm/<text>', methods=['GET'])
+def get_keywords(text):
+	result = keywords(text)
+	return Str(result)
+
 
 @app.route('/state', methods=['GET'])
 def get_state():
