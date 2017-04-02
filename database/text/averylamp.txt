@@ -1,0 +1,11 @@
+{
+  "name" : "Avery Lamp",
+  "date" : "April 1st",
+  "location" : "Princeton, NJ",
+  "image_name" : "averylamp.jpg",
+  "tags" : [
+    "MIT",
+    "SQUASH",
+    "STUFF"
+  ]
+}

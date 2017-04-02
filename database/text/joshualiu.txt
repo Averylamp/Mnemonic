@@ -1,0 +1,11 @@
+{
+  "name" : "Joshua Liu",
+  "date" : "April 1st",
+  "location" : "Waterloo, ON",
+  "image_name" : "joshualiu.jpg",
+  "tags" : [
+    "WATERLOO",
+    "CANADA",
+    "FOOD"
+  ]
+}
