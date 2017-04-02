@@ -90,7 +90,7 @@ def checkForMatch(set_number):
 		output_num = '%d' % i
 		filename = "image" + str(output_num) + ".jpg"
 		
-		fullFilePath = microsoft_path + "imageset" + str(set_number) + "/" + filename
+		fullFilePath = microsoft_path + "imageset" + str(0) + "/" + filename
 		print(fullFilePath)
 		try:
 			
@@ -292,7 +292,7 @@ def addPersonToDatabase(name, info):
 		output_num = '%d' % i
 		filename = "image" + str(output_num) + ".jpg"
 		# fullFilePath = microsoft_path + "imageset" + str(set_number) + "/" + filename
-		fullFilePath = microsoft_path + "imageset" + "/" + filename
+		fullFilePath = microsoft_path + "imageset0" + "/" + filename
 		print(fullFilePath)
 		try:
 			
