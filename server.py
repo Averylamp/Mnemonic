@@ -322,10 +322,11 @@ def addPersonToDatabase(name, info):
 	body = {}
 	body["name"] = name
 	print(type(info))
-	print(info)
+	print(str(info))
 	print("end info")
 	body["userData"] = dict_to_string(info)
-	print ("Body - {}".format(body))
+	let data = """{"name":"{}","userData":"{}"}""".format(name, dict_to_string(info))
+	print ("Body - {}".format(data))
 	conn = httplib.HTTPSConnection('westus.api.cognitive.microsoft.com')
 	conn.request("POST", "/face/v1.0/persongroups/people/persons", str(body), headers)
 	response = conn.getresponse()
