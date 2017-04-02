@@ -168,7 +168,7 @@ def checkForMatch(set_number):
 		with open("Output.txt", "w") as text_file:
 			text_file.write(complete)
 		print(complete)
-		os._exit(1)
+		return False
 		#make it stop running the program
 	headers = {
 	    # Request headers
