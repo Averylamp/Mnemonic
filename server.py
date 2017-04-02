@@ -5,10 +5,10 @@ import microsoftface
 # import ibmtext
 
 #these paths should be changed when running on the server
-UPLOAD_IMAGE_FOLDER = '/Users/josh/temp/Mnemonic/uploads/images/'
-UPLOAD_AUDIO_FOLDER = '/Users/josh/temp/Mnemonic/uploads/audio/'
-USER_TEXT_FOLDER = '/Users/josh/temp/Mnemonic/database/text/'
-USER_IMAGE_FOLDER = '/Users/josh/temp/Mnemonic/database/images/'
+UPLOAD_IMAGE_FOLDER = '/root/mnemonic/uploads/imagesets/'
+UPLOAD_AUDIO_FOLDER = '/root/mnemonic/uploads/audio/'
+USER_TEXT_FOLDER = '/root/mnemonic/database/text/'
+USER_IMAGE_FOLDER = '/root/mnemonic/database/images/'
 ALLOWED_IMAGE_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 ALLOWED_AUDIO_EXTENSIONS = set(['wav', 'mp3'])
 
@@ -17,6 +17,9 @@ app.config['UPLOAD_IMAGE_FOLDER'] = UPLOAD_IMAGE_FOLDER
 app.config['UPLOAD_AUDIO_FOLDER'] = UPLOAD_AUDIO_FOLDER
 
 state = "default" #valid states are default, listening, done, found
+
+current_folder = ""
+UPLOAD_COUNT = 0
 
 # @app.route('/')
 # def hello_world():
@@ -53,6 +56,8 @@ def upload_audio():
 
 @app.route('/upload/image', methods=['GET', 'POST'])
 def upload_image():
+	global UPLOAD_COUNT
+	global current_folder
 	if request.method == 'POST':
 		# check if the post request has the file part
 		if 'file' not in request.files:
@@ -65,9 +70,15 @@ def upload_image():
 			flash('No selected file')
 			return redirect(request.url)
 		if file and allowed_file(file.filename):
+			if UPLOAD_COUNT % 3 == 0:
+				print "lol"
+				current_folder = "imageset" + str(UPLOAD_COUNT/3) + "/"
+				state = "LISTENING"
+				if (not os.path.exists(os.path.join(UPLOAD_IMAGE_FOLDER, current_folder))):
+    					os.makedirs(os.path.join(UPLOAD_IMAGE_FOLDER, current_folder))
 			filename = secure_filename(file.filename)
-			file.save(os.path.join(app.config['UPLOAD_IMAGE_FOLDER'], filename))
-			state = "LISTENING"
+			file.save(os.path.join(app.config['UPLOAD_IMAGE_FOLDER'], current_folder, filename))
+			UPLOAD_COUNT += 1
 			return redirect(url_for('upload_image', filename=filename))
 	return '''
 	<!doctype html>
