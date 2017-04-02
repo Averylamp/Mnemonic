@@ -321,6 +321,9 @@ def addPersonToDatabase(name, info):
 	}
 	body = {}
 	body["name"] = name
+	print(type(info))
+	print(info)
+	print("end info")
 	body["userData"] = dict_to_string(info)
 	print ("Body - {}".format(body))
 	conn = httplib.HTTPSConnection('westus.api.cognitive.microsoft.com')
