@@ -158,8 +158,6 @@ def checkForMatch(set_number):
 		conn.close()
 	except Exception as e:
 		print("[Errno {0}] {1}".format(e.errno, e.strerror))
-
-
 	# print(ast.literal_eval(data))
 	person_data = {}
 	for result in ast.literal_eval(data):
@@ -228,6 +226,7 @@ def upload_image():
 				if resp == False:
 					print "match not found"
 				else:
+					state = "FOUND"
 					return resp
 					#do whatever
 					print "a"
@@ -336,6 +335,7 @@ def microsoft_confirm():
 
 @app.route('/doneListening', methods=['POST'])
 def finished_listening():
+	global state
 	print "State now Editing"
 	state = "EDITING"
 	return state
