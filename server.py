@@ -224,8 +224,9 @@ def checkForMatch(set_number):
 
 	#emotion_dict and faceIDS
 	print(data_dict)
-
+	global last_found_name
 	person_name = data_dict["name"]
+	last_found_name = person_name
 	response = "You have just met " + person_name + ".  " + data_dict["userData"]
 	print(response)
 	return response
@@ -453,3 +454,10 @@ def get_keywords(text):
 def get_state():
 	global state
 	return state
+
+
+@app.route('/found', methods=['GET'])
+def get_found():
+	global last_found_name
+	return last_found_name
+
