@@ -4,6 +4,7 @@ from werkzeug.utils import secure_filename
 import microsoftface
 # import ibmtext
 
+#these paths should be changed when running on the server
 UPLOAD_IMAGE_FOLDER = '/Users/josh/temp/Mnemonic/uploads/images/'
 UPLOAD_AUDIO_FOLDER = '/Users/josh/temp/Mnemonic/uploads/audio/'
 USER_TEXT_FOLDER = '/Users/josh/temp/Mnemonic/database/text/'
@@ -66,10 +67,7 @@ def upload_image():
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)
 			file.save(os.path.join(app.config['UPLOAD_IMAGE_FOLDER'], filename))
-
-
-
-
+			state = "LISTENING"
 			return redirect(url_for('upload_image', filename=filename))
 	return '''
 	<!doctype html>
@@ -83,15 +81,24 @@ def upload_image():
 
 @app.route('/users', methods=['GET'])
 def get_users():
-	string = ""
+	string = "["
 	files = [f for f in os.listdir(os.path.join(USER_TEXT_FOLDER)) if os.path.isfile(os.path.join(USER_TEXT_FOLDER, f))]
 	for f in files:
 		with open(USER_TEXT_FOLDER + f) as file:
 			string += file.read()
+			string += ","
+	if string[-1] == ",":
+		string[-1] = "]"
+	else:
+		string += "]"
 	return string
 
 @app.route('/images/<img_name>', methods=['GET'])
 def get_image(img_name):
 	print (USER_IMAGE_FOLDER + img_name)
 	return send_file(USER_IMAGE_FOLDER + img_name, mimetype='image/gif')
+
+@app.route('/state', methods=['GET'])
+def get_image(img_name):
+	return state;
 
