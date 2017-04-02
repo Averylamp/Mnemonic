@@ -88,9 +88,8 @@ def get_users():
 			string += file.read()
 			string += ","
 	if string[-1] == ",":
-		string[-1] = "]"
-	else:
-		string += "]"
+		string = string[:-1]
+	string += "]"
 	return string
 
 @app.route('/images/<img_name>', methods=['GET'])
@@ -98,7 +97,4 @@ def get_image(img_name):
 	print (USER_IMAGE_FOLDER + img_name)
 	return send_file(USER_IMAGE_FOLDER + img_name, mimetype='image/gif')
 
-@app.route('/state', methods=['GET'])
-def get_image(img_name):
-	return state;
 
