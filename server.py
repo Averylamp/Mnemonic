@@ -325,10 +325,8 @@ def addPersonToDatabase(name, info):
 @app.route('/microsoft', methods=['POST'])
 def microsoft_confirm():
 	global state
-	print request.args
-	print request.args.get("name")
 	print request.args.get("image_name")
-	print request.args.get("json_data")
+	print("Name - {}, json_data - {}".format(request.args.get("name"),request.args.get("json_data")))
 	addPersonToDatabase(request.args.get("name"),request.args.get("json_data"))
 	#write json data to text file in database,
 	#write image to database
