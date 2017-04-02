@@ -1,6 +1,6 @@
 import httplib, urllib, base64
-import os,sys, ast, json, copy, random, ssl, shutil
-from flask import Flask, request, redirect, url_for, send_file
+import os,sys, ast, json, copy, random, ssl, shutil, json
+from flask import Flask, request, redirect, url_for, send_file, jsonify
 from werkzeug.utils import secure_filename
 from watson_developer_cloud import SpeechToTextV1, AlchemyLanguageV1
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -10,7 +10,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 UPLOAD_IMAGE_FOLDER = '/root/mnemonic/uploads/imagesets/'
 RECENT_IMAGE_FOLDER = '/root/mnemonic/uploads/imagesets/imageset0/'
 UPLOAD_AUDIO_FOLDER = '/root/mnemonic/uploads/audio/'
-USER_TEXT_FOLDER = '/root/mnemonic/database/text/'
+USER_TEXT_FOLDER = '/Users/josh/temp/Mnemonic/database/text/'
 USER_IMAGE_FOLDER = '/root/mnemonic/database/images/'
 ALLOWED_IMAGE_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 ALLOWED_AUDIO_EXTENSIONS = set(['wav', 'mp3'])
@@ -291,7 +291,8 @@ def get_users():
 	if string[-1] == ",":
 		string = string[:-1]
 	string += "]"
-	return string
+	#string.replace('\"', '"')
+	return jsonify(json.loads(string))
 
 @app.route('/recent_image/<img_name>', methods=['GET'])
 def get_recent_image(img_name):
