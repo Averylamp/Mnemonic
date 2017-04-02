@@ -1,9 +1,12 @@
 import os
 from flask import Flask, request, redirect, url_for
 from werkzeug.utils import secure_filename
+#import microsoftface
+#import ibmtext
 
 UPLOAD_IMAGE_FOLDER = '/Users/josh/temp/Mnemonic/uploads/images/'
 UPLOAD_AUDIO_FOLDER = '/Users/josh/temp/Mnemonic/uploads/audio/'
+USER_TEXT_FOLDER = '/Users/josh/temp/Mnemonic/database/text/'
 ALLOWED_IMAGE_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 ALLOWED_AUDIO_EXTENSIONS = set(['wav', 'mp3'])
 
@@ -73,10 +76,12 @@ def upload_image():
 	</form>
 	'''
 
-# @app.route('/status', methods=['GET'])
-# def get_status():
-# 	if state == "default":
-# 	if state == "listening":
-# 	if state == "done":
-# 	if state == "found":
+@app.route('/users', methods=['GET'])
+def get_users():
+	string = ""
+	files = [f for f in os.listdir(os.path.join(USER_TEXT_FOLDER)) if os.path.isfile(os.path.join(USER_TEXT_FOLDER, f))]
+	for f in files:
+		with open(USER_TEXT_FOLDER + f) as file:
+			string += file.read()
+	return string
 
