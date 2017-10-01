@@ -11,7 +11,7 @@ Made by Daniel, Josh, Avery, Arlene.
 :rocket: :rocket: :rocket:
 
 
-If you would like to see more things that I have made, check out my:
+If you would like to see more things that I (Avery Lamp) has made, check out my:
 
 [_Devpost_](http://devpost.com/averylamp)
 
